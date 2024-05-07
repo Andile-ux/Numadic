@@ -1,25 +1,17 @@
-// JavaScript code for sending HTTP requests and integrating with the map
-// Example: using Fetch API for sending requests to the backend
-document.getElementById('vehicleForm').addEventListener('submit', function(event) {
+document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    var formData = new FormData(this);
 
-    fetch('/api/vehicles/register', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Vehicle registered successfully:', data);
-        // Handle success response
-    })
-    .catch(error => {
-        console.error('Error registering vehicle:', error);
-        // Handle error
-    });
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    // For simplicity, let's just check if the username and password are not empty
+    if (username.trim() === '' || password.trim() === '') {
+        document.getElementById('message').innerText = 'Please enter username and password.';
+        document.getElementById('message').classList.remove('hidden');
+    } else {
+        // You can perform AJAX request to your backend for authentication here
+        // For demonstration purposes, let's just display a success message
+        document.getElementById('message').innerText = 'Login successful!';
+        document.getElementById('message').classList.remove('hidden');
+    }
 });
